@@ -6,6 +6,8 @@
 
 作者是 [Preact- 小型React库的作者](https://github.com/developit/preact)
 
+[github source](https://github.com/developit/workerize)
+
 ---
 
 尝试 `workderize`, 在 调试`console`
