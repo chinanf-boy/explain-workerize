@@ -103,11 +103,11 @@ export default function workerize(code) {
 		callbacks = {};
 ```
 
-- [toCode](#toCode)
+- [toCode](#tocode)
 
 > 函数变文本
 
-- [toCjs](#toCjs)
+- [toCjs](#tocjs)
 
 > 改造文本，记录函数
 
@@ -282,15 +282,19 @@ function toCode(func) {
 }
 ```
 
+1. 定义
 ``` js
 function add(){
 }
-
 ```
+
+2. 运行
 
 > Function.prototype.toString.call(add) // 变成 String
 
-< "function add(){}"
+3. 结果
+
+` "function add(){}"`
 
 ---
 
