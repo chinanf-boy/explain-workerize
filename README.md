@@ -62,20 +62,19 @@ npx http-server .
 
 - 与异步/等待美妙地工作
 
-- 导入的值是可实例化的，只是一个装饰 `Worker`
 ---
 
 ## [整体概括](#整体概括)
 
-- [workerize](#)
+- [workerize](#workerize)
 
-- [worker-管理](#)
+- [worker-管理](#worker-管理)
 
-- [开始运作](#)
+- [开始运作-分配`add`函数到`worker`](#开始运作)
 
-- [setup](#)
+- [setup-配置worker事件](#setup)
 
-- [工具函数](#)
+- [工具函数-toCode-toCjs](#工具函数)
 
 ---
 
@@ -441,3 +440,43 @@ code.replace(/^(\s*)export\s+(function|const|let|var)(\s+)([a-zA-Z$_][a-zA-Z0-9$
 
 ## 整体概括
 
+我们回顾一下，作者提到这个库的特点
+
+- 将一个小型的专门构建的`RPC`实现捆绑到您的应用程序中
+
+- 如果导出的模块方法已经是 `async` ，那么签名是不变的
+
+- 支持 `sync` 和 `async` 工作者功能
+
+- 与`async`/`await`美妙地工作
+
+---
+
+1. RPC 远程过程调用协议 ~~?~~  
+
+2. 我看到的签名，应该是 `唯一 id` 或者是 `exportsObjName` 这个随机值
+
+3. 
+	- `worker[i] = (...args) => worker.call(i, args);` 的使用
+
+	- `worker.call = (method, params) => new Promise(` 的定义，必定是异步
+
+4. 上面也说了，`Promise` ,自然与async/await 美妙结合
+
+> ---
+
+整体来说，作者活用了 [Blob](#blob) [worker](#worker) 两个api
+
+真的厉害:)
+
+---
+
+## 其他
+
+作者使用的 构建工具
+
+是 零配置的，power by [`rollup`](https://github.com/rollup/rollup) 的自己写的工具。
+
+- [rollup官网-优秀的中文](http://rollupjs.org/)
+
+- [microbundle-作者构建工具](https://github.com/developit/microbundle)
